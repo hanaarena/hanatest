@@ -1,0 +1,79 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Page Title</title> 	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript">
+	var num = 1; var x = -61;
+	function ToggleMove() {
+		x = -x;			
+		num += 1;
+		if(x > 0) {
+			spTwo.style.webkitTransition = "-webkit-transform 0.5s, background-color 0.5s";
+			spTwo.style.webkitTransform = "translateX("+x+"px)";
+			window.setTimeout("BgColorChange()",700);
+		}
+		else if(x < 0){
+			x = 0;
+			spTwo.style.webkitTransition = "-webkit-transform 0.5s, background-color 0.5s";
+			spTwo.style.webkitTransform = "translateX("+x+"px)";
+			window.setTimeout("BgColorChange()",700);			
+		}
+		else {
+			x =61;
+			spTwo.style.webkitTransition = "-webkit-transform 0.5s, background-color 0.5s";
+			spTwo.style.webkitTransform = "translateX("+x+"px)";
+			window.setTimeout("BgColorChange()",700);	
+		}
+	}
+	function BgColorChange() { 
+	   if(num%2 === 0) {	  
+		  var r = parseInt(Math.random() * 255);
+  		  var g = parseInt(Math.random() * 255);
+   		  var b = parseInt(Math.random() * 255);
+   		  var colorHex = r.toString(16) + g.toString(16) + b.toString(16);
+		  document.body.bgColor = "rgba("+r+","+g+","+b+","+"0.9)";	 
+		  window.setTimeout("BgColorChange()",2400); 
+	   }		  
+	}
+	</script>
+
+    <style type="text/css">
+		#spOne {
+			position:fixed;
+			-webkit-border-radius:4px;
+			width:130px;
+			height:34px;
+			background:#CCC;
+		}
+		#spTwo {
+			position:absolute;
+			-webkit-border-radius:4px;
+			cursor:pointer;
+			width:65px;
+			height:30px;
+			margin-top:2px;
+			margin-left:2px;
+			background:#09F;
+		}
+		#_box {
+			position:absolute;
+			margin:150px;
+			width:100px;
+			height:100px;
+			background:#000;
+		}	
+		
+	</style>
+</head> 
+<body> 
+	<div id="toggle">
+    	<span id="spOne"></span>
+        <span id="spTwo" onClick="ToggleMove()"></span>	
+    </div>
+   
+    <div id="_box" onClick="BgColorChange()"></div> 
+	
+
+</body>
+</html>
